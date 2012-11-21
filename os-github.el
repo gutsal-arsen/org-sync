@@ -176,7 +176,7 @@ Append new tags in EXISTING-TAGS by side effects."
       (re-search-forward "^$" nil 'move)
       (forward-char)
       (setq header-end (point))
-
+      (set-buffer-multibyte t)
       ;; get next page url
       (goto-char (point-min))
       (when (re-search-forward
@@ -209,6 +209,7 @@ JSON response."
       ;; nothing more to bind
       (setq buf (url-retrieve-synchronously url)))
     (with-current-buffer buf
+      (set-buffer-multibyte t)
       (goto-char url-http-end-of-headers)
       (prog1 (json-read) (kill-buffer)))))
 
