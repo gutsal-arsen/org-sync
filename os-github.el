@@ -157,10 +157,18 @@ Append new tags in EXISTING-TAGS by side effects."
 
 (defun os-github-fetch-json-page (url)
   "Return a cons (JSON object from URL . next page url)."
-  (let ((download-buffer (url-retrieve-synchronously url))
+  (let (download-buffer
         page-next
         header-end
+        (auth os-github-auth)
         ret)
+    (if (consp auth)
+        (let* ((str (concat (car auth) ":" (cdr auth)))
+            (encoded (base64-encode-string str))
+            (login `(("api.github.com:443" ("Github API" . ,encoded))))
+            (url-basic-auth-storage 'login))
+       (setq download-buffer (url-retrieve-synchronously url)))
+      (setq download-buffer (url-retrieve-synchronously url)))
 
     (with-current-buffer download-buffer
       ;; get HTTP header end position
