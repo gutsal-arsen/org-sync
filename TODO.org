@@ -18,6 +18,8 @@ No backend uses it but importing from/exporting to org-element works.
 Some ideas:
 - a single variable maps repo urls to user accounts.
 - each backend use its own variable, more flexible.
+- keep the bugtracker URL of the current document as a property
+- support authinfo/authinfo.gpg
 
 ** DONE cache parse/fetch result
 os-cache-alist maps urls to buglists and each buglists has a
