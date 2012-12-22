@@ -260,4 +260,5 @@ JSON response."
      (state . ,(symbol-name (os-get-prop :status bug)))
      (labels . [ ,@(os-get-prop :tags bug) ])))))
 
+(provide 'os-github)
 ;;; os-github.el ends here

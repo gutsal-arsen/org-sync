@@ -257,4 +257,6 @@ decoded response in JSON."
             (error "Can't update bug #%id" id))
           (push (os-bb-json-to-bug (cdr res)) new-bugs)))))
     `(:bugs ,new-bugs)))
+
+(provide 'os-bb)
 ;;; os-bb.el ends here
