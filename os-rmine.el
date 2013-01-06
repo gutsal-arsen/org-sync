@@ -1,4 +1,4 @@
-;;; os-rmine.el --- Redmine backend for org-sync.
+;;; os-rmine.el --- Redmine backend for Org-sync.
 
 ;; Copyright (C) 2012  Aurelien Aptel
 ;;
@@ -23,7 +23,7 @@
 
 ;;; Commentary:
 
-;; This package implements a backend for org-sync to synchnonize
+;; This package implements a backend for Org-sync to synchnonize
 ;; issues from a redmine repo with an org-mode buffer.  Read Org-sync
 ;; documentation for more information about it.
 
@@ -151,7 +151,7 @@ decoded response in JSON."
             :date-modification ,mtime))))
 
 (defun org-sync-rmine-fetch-buglist (last-update)
-  "Return the buglist at org-sync-base-url."
+  "Return the buglist at `org-sync-base-url'."
   (let* ((url (concat org-sync-base-url "/issues.json"))
          (res (org-sync-rmine-request "GET" url))
          (code (car res))

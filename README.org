@@ -53,7 +53,7 @@ the header in [[file:os.el%5D%5D][os.el]] or one of the existing backend.
 ;; the symbol is used to find and call your backend functions (for now)
 
 ;; what kind of urls does you backend handle?
-;; add it to org-sync-backend-alist in os.el:
+;; add it to `org-sync-backend-alist' in os.el:
 
 (defvar org-sync-backend-alist
   '(("github.com/\\(?:repos/\\)?[^/]+/[^/]+"  . org-sync-github-backend)
@@ -68,7 +68,7 @@ the header in [[file:os.el%5D%5D][os.el]] or one of the existing backend.
 
 (require 'os)
 
-;; this is the variable used in org-sync-backend-alist
+;; this is the variable used in `org-sync-backend-alist'
 (defvar org-sync-demo-backend
   '((base-url      . org-sync-demo-base-url)
     (fetch-buglist . org-sync-demo-fetch-buglist)
@@ -76,7 +76,7 @@ the header in [[file:os.el%5D%5D][os.el]] or one of the existing backend.
   "Demo backend.")
 
 
-;; this overrides org-sync--base-url.
+;; this overrides `org-sync--base-url'
 ;; the argument is the url the user gave.
 ;; it must return a cannonical version of the url that will be
 ;; available to your backend function in the org-sync-base-url variable.
@@ -88,8 +88,8 @@ the header in [[file:os.el%5D%5D][os.el]] or one of the existing backend.
   "Return proper URL."
   "http://api.demo.com/foo")
 
-;; this overrides org-sync--fetch-buglist
-;; you can use the variable org-sync-base-url
+;; this overrides `org-sync--fetch-buglist'
+;; you can use the variable `org-sync-base-url'
 (defun org-sync-demo-fetch-buglist (last-update)
   "Fetch buglist from demo.com (anything that happened after LAST-UPDATE)"
   ;; a buglist is just a plist
@@ -105,7 +105,7 @@ the header in [[file:os.el%5D%5D][os.el]] or one of the existing backend.
            ;; a bug is a plist too
            :bugs ((:id 1 :title "Foo" :status open :desc "bar."))))
 
-;; this overrides org-sync--send-buglist
+;; this overrides `org-sync--send-buglist'
 (defun org-sync-demo-send-buglist (buglist)
   "Send BUGLIST to demo.com and return updated buglist"
   ;; here you should loop over :bugs in buglist

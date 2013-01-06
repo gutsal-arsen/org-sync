@@ -1,4 +1,4 @@
-;;; os-bb.el --- Bitbucket backend for org-sync.
+;;; os-bb.el --- Bitbucket backend for Org-sync.
 
 ;; Copyright (C) 2012  Aurelien Aptel
 ;;
@@ -23,7 +23,7 @@
 
 ;;; Commentary:
 
-;; This package implements a backend for org-sync to synchnonize
+;; This package implements a backend for Org-sync to synchnonize
 ;; issues from a bitbucket repo with an org-mode buffer.  Read
 ;; Org-sync documentation for more information about it.
 
@@ -178,7 +178,7 @@ decoded response in JSON."
 
 ;; override
 (defun org-sync-bb-fetch-buglist (last-update)
-  "Return the buglist at org-sync-base-url."
+  "Return the buglist at `org-sync-base-url'."
   (let* ((url (concat org-sync-base-url "/issues"))
          (res (org-sync-bb-request "GET" url))
          (code (car res))

@@ -1,4 +1,4 @@
-;;; os-github.el --- Github backend for org-sync.
+;;; os-github.el --- Github backend for Org-sync.
 
 ;; Copyright (C) 2012  Aurelien Aptel
 ;;
@@ -23,7 +23,7 @@
 
 ;;; Commentary:
 
-;; This package implements a backend for org-sync to synchnonize
+;; This package implements a backend for Org-sync to synchnonize
 ;; issues from a github tracker with an org-mode buffer.  Read
 ;; Org-sync documentation for more information about it.
 
@@ -50,7 +50,7 @@
   "Github login (\"user\" . \"pwd\")")
 
 (defun org-sync-github-fetch-labels ()
-  "Return list of labels at org-sync-base-url."
+  "Return list of labels at `org-sync-base-url'."
   (let* ((url (concat org-sync-base-url "/labels"))
          (json (org-sync-github-fetch-json url)))
     (mapcar (lambda (x)
@@ -67,7 +67,7 @@
   (and (stringp color) (string-match "^[0-9a-fA-F]\\{6\\}$" color)))
 
 (defun org-sync-github-create-label (label &optional color)
-  "Create new COLOR LABEL at org-sync-base-url and return it.
+  "Create new COLOR LABEL at `org-sync-base-url' and return it.
 
 LABEL must be a string.  COLOR must be a 6 characters string
 containing a hex color code without the #.  Take a random color
@@ -94,7 +94,7 @@ Append new tags in EXISTING-TAGS by side effects."
 
 ;; override
 (defun org-sync-github-fetch-buglist (last-update)
-  "Return the buglist at org-sync-base-url."
+  "Return the buglist at `org-sync-base-url'."
   (let* ((since (when last-update
                   (format "&since=%s" (org-sync-github-time-to-string last-update))))
          (url (concat org-sync-base-url "/issues?per_page=100" since))
@@ -161,7 +161,7 @@ Append new tags in EXISTING-TAGS by side effects."
 
 (defun org-sync-github-url-retrieve-synchronously (url)
   "Retrieve the specified url using authentication data from
-org-sync-github-auth. AUTH is a cons (\"user\" . \"pwd\")."
+`org-sync-github-auth'. AUTH is a cons (\"user\" . \"pwd\")."
   (let ((auth org-sync-github-auth))
     (if (consp auth)
         ;; dynamically bind auth related vars
