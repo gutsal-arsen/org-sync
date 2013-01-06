@@ -25,105 +25,98 @@
 (require 'os)
 
 (ert-deftest test-org-sync-headline-url ()
-  (should
-   (equal
-    (with-temp-buffer
-      (insert "
+  (with-temp-buffer
+    (insert "
 :PROPERTIES:
 :url: http://foo.bar
 :END:")
-      (org-mode)
-      (org-sync-headline-url
-       (org-element-contents
-        (org-element-parse-buffer))))
-    "http://foo.bar"))
+    (org-mode)
+    (should
+     (equal (org-sync-headline-url
+             (org-element-contents
+              (org-element-parse-buffer)))
+            "http://foo.bar")))
 
-  (should
-   (equal
-    (with-temp-buffer
-      (insert "
+  (with-temp-buffer
+    (insert "
 * Test
 :PROPERTIES:
 :url: http://foo.bar
 :END:")
-      (org-mode)
-      (org-sync-headline-url
-       (org-element-contents
-        (org-element-parse-buffer))))
-    "http://foo.bar"))
+    (org-mode)
+    (should
+     (equal (org-sync-headline-url
+             (org-element-contents
+              (org-element-parse-buffer)))
+            "http://foo.bar")))
 
-  (should
-   (equal
-    (with-temp-buffer
-      (insert "
+  (with-temp-buffer
+    (insert "
 :PROPERTIES:
 :dummy: baz
 :url: http://foo.bar
 :fizz: bar
 :END:")
-      (org-mode)
-      (org-sync-headline-url
-       (org-element-contents
-        (org-element-parse-buffer))))
-    "http://foo.bar"))
-
-  (should
-   (equal
-    (with-temp-buffer
-      (insert "
+    (org-mode)
+    (should
+     (equal (org-sync-headline-url
+             (org-element-contents
+              (org-element-parse-buffer)))
+            "http://foo.bar")))
+  
+  (with-temp-buffer
+    (insert "
 :PROPERTIES:
 :fizz: bar
 :END:")
-      (org-mode)
-      (org-sync-headline-url
-       (org-element-contents
-        (org-element-parse-buffer))))
-    nil)))
+    (org-mode)
+    (should
+     (equal (org-sync-headline-url
+             (org-element-contents
+              (org-element-parse-buffer)))
+            nil))))
 
 (ert-deftest test-org-sync-buglist-headline-p ()
-  (should
-   (equal
-    (with-temp-buffer
-      (insert "
+  (with-temp-buffer
+    (insert "
 * Test
 :PROPERTIES:
 :url: http://foo.bar
 :END:")
-      (org-mode)
-      (org-sync-buglist-headline-p
-       (first
-        (org-element-contents
-         (org-element-parse-buffer)))))
-    t))
+    (org-mode)
+    (should
+     (equal (org-sync-buglist-headline-p
+             (first
+              (org-element-contents
+               (org-element-parse-buffer))))
+            t)))
 
-  (should
-   (equal
-    (with-temp-buffer
-      (insert "
+  (with-temp-buffer
+    (insert "
 * Test
 :PROPERTIES:
 :fizz: bar
 :END:")
-      (org-mode)
-      (org-sync-buglist-headline-p
-       (first
-        (org-element-contents
-         (org-element-parse-buffer)))))
-    nil))
+    (org-mode)
+    (should
+     (equal (org-sync-buglist-headline-p
+             (first
+              (org-element-contents
+               (org-element-parse-buffer))))
+            nil)))
 
-  (should
-   (equal
-    (with-temp-buffer
-      (insert "
+  (with-temp-buffer
+    (insert "
 :PROPERTIES:
 :url: foo
 :END:")
-      (org-mode)
-      (org-sync-buglist-headline-p
-       (first
-        (org-element-contents
-         (org-element-parse-buffer)))))
-    nil)))
+    (org-mode)
+    (should
+     (equal (org-sync-buglist-headline-p
+             (first
+              (org-element-contents
+               (org-element-parse-buffer))))
+            nil))))
 
 (provide 'test-os)
 
