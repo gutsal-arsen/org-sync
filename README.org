@@ -28,7 +28,7 @@ wget -O org-element.el 'http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=lisp
 
 Next, open a new org-mode buffer and run =M-x os-import=.  It prompts
 you for an URL.  You can try my github test repo:
-github.com/ostesting/test.  Org-sync should import the issues from the
+[[http://github.com/ostesting/test]].  Org-sync should import the issues from the
 repo.
 
 Now, let's try to add a new issue.  First you have to set a
@@ -46,7 +46,7 @@ the buglists in the document.
 * How to write a new backend
 
 Writing a new backend is easy.  If something is not clear, try to read
-the header in =os.el= or one of the existing backend.
+the header in [[file:os.el%5D%5D][os.el]] or one of the existing backend.
 
 #+begin_src emacs-lisp
 ;; backend symbol/name: demo
@@ -137,8 +137,8 @@ properties.  Other recognized but optionnal properties are
 Any other properties are automatically added in the =PROPERTIES= block
 of the bug via =prin1-to-string= and are =read= back by org-sync.  All
 the dates are regular emacs time object.  For more details you can
-look at the github backend in =os-github.el=.
+look at the github backend in [[file:os-github.el][os-github.el]].
 
 * More information
 
-You can find more in the =os.el= commentary headers.
+You can find more in the [[file:os.el][os.el]] commentary headers.
