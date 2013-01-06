@@ -22,11 +22,11 @@ Some ideas:
 - support authinfo/authinfo.gpg
 
 ** DONE cache parse/fetch result
-os-cache-alist maps urls to buglists and each buglists has a
+org-sync-cache-alist maps urls to buglists and each buglists has a
 =:date-cache= property.
 
 ** DONE replace overridable macro by something simpler
-The right value of a pair in os-backend-alist is now the symbol of a
+The right value of a pair in org-sync-backend-alist is now the symbol of a
 variable defined in each backend. This variable is an alist that maps
 verb symbol (base-url, fetch-buglist, send-buglist for now) to
 function symbol.
