@@ -426,12 +426,12 @@ Return ELEM if it was added, nil otherwise."
          ,(org-sync-alist-to-property-drawer prop-alist)
          (fixed-width (:value ,(org-sync-get-prop :desc b))))))))
 
-(defun org-sync-headline-url (e)
-  "Returns the url of the buglist in headline E."
+(defun org-sync-headline-url (elem)
+  "Returns the url of the buglist in headline ELEM."
   (cdr (assoc "url"
               (org-sync-property-drawer-to-alist
                (car (org-element-contents
-                     (car (org-element-contents e))))))))
+                     (car (org-element-contents elem))))))))
 
 (defun org-sync-buglist-headline-p (elem)
   "Return t if ELEM is a buglist headline."
