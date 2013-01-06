@@ -40,7 +40,7 @@ Set the variable org-sync-github-auth to like so:
 Try to add another issue e.g. insert =** OPEN my test issue=.  You can
 type a description under it if you want.
 
-The next step is simple, just run =M-x org-sync=.  It synchronize all
+The next step is simple, just run =M-x org-sync-update=.  It synchronize all
 the buglists in the document.
 
 * How to write a new backend

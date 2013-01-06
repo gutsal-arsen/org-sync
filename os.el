@@ -839,7 +839,7 @@ sync again.\n\n")
       (org-sync-set-prop :bugs final diff)))
   diff)
 
-(defun org-sync ()
+(defun org-sync-update ()
   "Update buglists in current buffer."
   (interactive)
   (ignore-errors (kill-buffer org-sync-conflict-buffer))
@@ -928,7 +928,7 @@ sync again.\n\n")
       (insert (org-element-interpret-data local-doc))
       (goto-char oldpoint))))
 
-(defun os ()
+(defun org-sync ()
   "Synchronize current buffer or import an external document.
 
 If no Org-sync elements are present in the buffer, ask for a URL
