@@ -24,7 +24,7 @@
 (require 'ert)
 (require 'os)
 
-(ert-deftest test-org-sync-headline-url ()
+(ert-deftest org-sync-headline-url ()
   (with-temp-buffer
     (insert "
 :PROPERTIES:
@@ -76,7 +76,7 @@
               (org-element-parse-buffer)))
             nil))))
 
-(ert-deftest test-org-sync-buglist-headline-p ()
+(ert-deftest org-sync-buglist-headline-p ()
   (with-temp-buffer
     (insert "
 * Test
