@@ -102,6 +102,9 @@ decoded response in JSON."
     (message "%s %s %s" method url (prin1-to-string data))
     (setq buf (url-retrieve-synchronously url))
     (with-current-buffer buf
+      ;; Fixme: should check the content-type header for the encoding and then
+      ;; convert the data appropriately.
+      (toggle-enable-multibyte-characters 1)
       (goto-char url-http-end-of-headers)
       (prog1
           (cons url-http-response-status (ignore-errors (json-read)))
