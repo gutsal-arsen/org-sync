@@ -31,6 +31,7 @@
 
 (eval-when-compile (require 'cl))
 (require 'os)
+(require 'os-util)
 (require 'url)
 (require 'json)
 
@@ -100,15 +101,7 @@ decoded response in JSON."
       (setq url (org-sync-url-param url `(("key" . ,auth)))))
 
     (message "%s %s %s" method url (prin1-to-string data))
-    (setq buf (url-retrieve-synchronously url))
-    (with-current-buffer buf
-      ;; Fixme: should check the content-type header for the encoding and then
-      ;; convert the data appropriately.
-      (toggle-enable-multibyte-characters 1)
-      (goto-char url-http-end-of-headers)
-      (prog1
-          (cons url-http-response-status (ignore-errors (json-read)))
-        (kill-buffer)))))
+    (org-sync-util-read-json-from-url url)))
 
 ;; override
 (defun org-sync-rmine-base-url (url)
