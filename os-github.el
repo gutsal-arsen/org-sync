@@ -228,11 +228,12 @@ Return the server decoded JSON response."
 ;; XXX: we need an actual markdown parser here...
 (defun org-sync-github-filter-desc (desc)
   "Return a filtered description of a GitHub description."
-  (setq desc (replace-regexp-in-string "\r\n" "\n" desc))
-  (setq desc (replace-regexp-in-string "\\([^ \t\n]\\)[ \t\n]*\\'"
-                                       "\\1\n" desc)))          
-
-(defun org-sync-github-json-to-bug (data)
+  (if desc (progn
+             (setq desc (replace-regexp-in-string "\r\n" "\n" desc))
+             (setq desc (replace-regexp-in-string "\\([^ \t\n]\\)[ \t\n]*\\'"
+                                                  "\\1\n" desc)))))
+  
+(defun os-github-json-to-bug (data)
   "Return DATA (in json) converted to a bug."
   (flet ((va (key alist) (cdr (assoc key alist)))
          (v (key) (va key data)))
