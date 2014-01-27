@@ -1,7 +1,11 @@
 * Introduction
 
 Org-sync is a tool to synchronize online bugtrackers with org
-documents.
+documents. It is made for relatively small/medium projects: I find Org
+documents are not really suited for handling large bug lists.
+
+The official homepage of the project is [[http://orgmode.org/worg/org-contrib/gsoc2012/student-projects/org-sync/][on Worg]]. You can find the
+official git repo and contact informations there.
 
 * Installation
 
@@ -11,15 +15,15 @@ backend you need. You can add this to your .emacs:
 #+begin_src emacs-lisp
 (add-to-list 'load-path "path/to/org-sync")
 (mapc 'load
-      '("org-element" "os" "os-bb" "os-github" "os-rmine"))
+      '("os" "os-bb" "os-github" "os-rmine"))
 #+end_src
 
-Make sure you have =org-element.el= (it's part of recent org-mode). If
+Make sure you have =org-element.el= (it's part of recent org-mode >= 8). If
 you don't have it you can download a recent version in the org-sync
 directory:
 
 #+begin_src sh
-wget -O org-element.el 'http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=lisp/org-element.el;hb=b60445cfd44bf800f0c338cbf9795ceb2767a06d'
+wget -O org-element.el 'http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=lisp/org-element.el'
 #+end_src
 
 * Tutorial
@@ -27,7 +31,8 @@ wget -O org-element.el 'http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=lisp
 Next, open a new org-mode buffer and run =M-x os-import=.  It prompts
 you for an URL.  You can try my github test repo:
 github.com/ostesting/test.  Org-sync should import the issues from the
-repo.
+repo. *Note*: This is just a test repo, do not use it to report actual
+bugs.
 
 Now, let's try to add a new issue.  First you have to set a
 user/password to be able to modify the issue remotely.

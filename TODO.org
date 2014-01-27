@@ -6,6 +6,7 @@
 
 * Org-sync
 
+** TODO write tests
 ** TODO better error checking
 ** TODO convert markup to org-mode and reciprocally
 Also, find out how to handle charsets, line-ending, etc.
