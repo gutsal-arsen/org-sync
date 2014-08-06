@@ -117,7 +117,8 @@ decoded response in JSON."
   (let ((purl (url-generic-parse-url url)))
     (when (string-match "^.*/projects/\\([^/]+\\)" (url-filename purl))
       (concat (url-type purl) "://"
-              (url-host purl)
+              (url-host purl) ":"
+	      (number-to-string(url-port purl))
               (match-string 0 (url-filename purl))))))
 
 (defun os-rmine-repo-name (url)
