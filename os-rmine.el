@@ -49,6 +49,13 @@
 (defvar os-rmine-project-id nil
   "Project id of current buglist.")
 
+(defcustom os-rmine-open-keywords 
+  '("New" "Open")
+  "List of states that refere to open Redmine tickets"
+  :type '(list)
+  :group 'org-sync
+)
+
 (defconst os-rmine-date-regex
   (rx
    (seq
@@ -133,8 +140,7 @@ decoded response in JSON."
     (let* ((id (v 'id))
            (author (va 'name (v 'author)))
            (txtstatus (va 'name (v 'status)))
-           (status (if (or (string= txtstatus "Open")
-                           (string= txtstatus "New"))
+           (status (if (not (equal nil (member txtstatus os-rmine-open-keywords)))
                        'open
                      'closed))
            (priority (va 'name (v 'priority)))
