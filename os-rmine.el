@@ -139,6 +139,7 @@ decoded response in JSON."
          (v (key) (va key json)))
     (let* ((id (v 'id))
            (author (va 'name (v 'author)))
+	   (assignee (va 'name (v 'assigned_to)))
            (txtstatus (va 'name (v 'status)))
            (status (if (not (equal nil (member txtstatus os-rmine-open-keywords)))
                        'open
@@ -150,6 +151,8 @@ decoded response in JSON."
            (mtime (os-rmine-parse-date (v 'updated_on))))
 
       `(:id ,id
+	    :author ,author
+	    :assigned_to, assignee
             :priority ,priority
             :status ,status
             :title ,title
