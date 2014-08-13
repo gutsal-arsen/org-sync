@@ -171,6 +171,11 @@ Maps URLs to buglist cache.")
 (defvar os-sync-props nil
   "List of property to sync or nil to sync everything.")
 
+(defcustom os-cons-state-todo-dict nil
+  "Dictionary that helps mapping states that the API returns to Org-Todo items"
+  :type '(alist :value-type string :key-type string)
+  :group 'org-sync)
+
 (defun os-action-fun (action)
   "Return current backend ACTION function or nil."
   (unless (or (null action) (null os-backend))
@@ -384,6 +389,12 @@ Return ELEM if it was added, nil otherwise."
             (delq x final)) minus)
     final))
 
+(defun os-state-to-todo-converter (key)
+  "Converts a given state to a TODO State using
+`̀os-cons-state-todo-dict'. Returns nil if key is nil, or if key
+can't be found"
+  (cdr (assoc-string key os-cons-state-todo-dict)))
+
 (defun os-bug-to-element (b)
   "Return bug B as a TODO element if it is visible or nil."
   ;; not in PROPERTIES block
@@ -420,7 +431,7 @@ Return ELEM if it was added, nil otherwise."
                      (format-time-string (org-time-stamp-format) dtime))))
                 :level 2
                 :todo-type todo
-                :todo-keyword ,(upcase (symbol-name (os-get-prop :status b))))
+                :todo-keyword ,(upcase (os-state-to-todo-converter (os-get-prop :status b))))
         (section
          nil
          ,(os-alist-to-property-drawer prop-alist)
