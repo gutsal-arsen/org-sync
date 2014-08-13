@@ -1,3 +1,6 @@
+* Changes
+  - The current version might not work with anything else but Redmine. To get it
+    to work with Redmine you have to set the dictionary =os-cons-state-todo-dict=
 * Introduction
 
 Org-sync is a tool to synchronize online bugtrackers with org
@@ -145,3 +148,5 @@ look at the github backend in =os-github.el=.
 * More information
 
 You can find more in the =os.el= commentary headers.
+* DISCLAIMER
+  Use at your own risk. I can not be made responsible if anything breaks. 
