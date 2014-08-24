@@ -113,7 +113,8 @@ decoded response in JSON."
   (let ((purl (url-generic-parse-url url)))
     (when (string-match "^.*/projects/\\([^/]+\\)" (url-filename purl))
       (concat (url-type purl) "://"
-              (url-host purl)
+              (url-host purl) ":"
+	      (number-to-string(url-port purl))
               (match-string 0 (url-filename purl))))))
 
 (defun org-sync-rmine-repo-name (url)
@@ -127,11 +128,9 @@ decoded response in JSON."
          (v (key) (va key json)))
     (let* ((id (v 'id))
            (author (va 'name (v 'author)))
+	   (assignee (va 'name (v 'assigned_to)))
            (txtstatus (va 'name (v 'status)))
-           (status (if (or (string= txtstatus "Open")
-                           (string= txtstatus "New"))
-                       'open
-                     'closed))
+	   (status txtstatus)
            (priority (va 'name (v 'priority)))
            (title (v 'subject))
            (desc (v 'description))
@@ -139,6 +138,8 @@ decoded response in JSON."
            (mtime (org-sync-rmine-parse-date (v 'updated_on))))
 
       `(:id ,id
+	    :author ,author
+	    :assigned_to, assignee
             :priority ,priority
             :status ,status
             :title ,title

@@ -145,4 +145,6 @@ look at the github backend in [[file:os-github.el][os-github.el]].
 
 * More information
 
-You can find more in the [[file:os.el][os.el]] commentary headers.
+  You can find more in the [[file:os.el][os.el]] commentary headers
+* DISCLAIMER
+  Use at your own risk. I can not be made responsible if anything breaks. 
