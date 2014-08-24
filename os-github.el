@@ -37,6 +37,7 @@
 (require 'url)
 (require 'os)
 (require 'json)
+(require 'noflet)
 
 (defvar org-sync-github-backend
   '((base-url      . org-sync-github-base-url)
@@ -233,9 +234,9 @@ Return the server decoded JSON response."
              (setq desc (replace-regexp-in-string "\\([^ \t\n]\\)[ \t\n]*\\'"
                                                   "\\1\n" desc)))))
   
-(defun os-github-json-to-bug (data)
+(defun org-sync-github-json-to-bug (data)
   "Return DATA (in json) converted to a bug."
-  (flet ((va (key alist) (cdr (assoc key alist)))
+  (noflet ((va (key alist) (cdr (assoc key alist)))
          (v (key) (va key data)))
     (let* ((id (v 'number))
            (stat (if (string= (v 'state) "open") 'open 'closed))
