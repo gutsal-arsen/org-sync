@@ -101,7 +101,15 @@ decoded response in JSON."
       (setq url (org-sync-url-param url `(("key" . ,auth)))))
 
     (message "%s %s %s" method url (prin1-to-string data))
-    (org-sync-util-read-json-from-url url)))
+    (setq buf (url-retrieve-synchronously url))
+    (with-current-buffer buf
+      ;; Fixme: should check the content-type header for the encoding and then
+      ;; convert the data appropriately.
+      (toggle-enable-multibyte-characters 1)
+      (goto-char url-http-end-of-headers)
+      (prog1
+          (cons url-http-response-status (ignore-errors (json-read)))
+        (kill-buffer)))))
 
 ;; override
 (defun org-sync-rmine-base-url (url)
